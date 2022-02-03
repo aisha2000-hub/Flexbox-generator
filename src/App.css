@@ -1,38 +1,74 @@
-.App {
+
+.App{
+  display:flex;
+  flex-direction:column;
   text-align: center;
+  border: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.title{
+  font-size:3rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.flex-fieldset , .justify-fieldset , .align-fieldset{
+  font-size:1.5rem;
+  border:none;
+  
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#justify-content , #align-items{
+  padding:5px 15px;
+  margin-left:10px;
+  border:none;
+  border-radius: 4px;
+  box-shadow: 1px 2px 5px 1px gray;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#justify-content:hover , #align-items:hover{
+  background-color:rgb(212, 182, 124);
+
 }
 
-.App-link {
-  color: #61dafb;
+.farb-container{
+  display:flex;
+  justify-content:center;
+  justify-content:space-evenly;
+  align-items:flex-end;
+  border-radius:5px;
+  box-shadow: 1px 1px 7px 2px gray;
+  align-self:center;
+  height:28vh;
+  width: 65%;
 }
+.red{
+  background-color: #fe595f;
+  width: 10%;
+  height: 15vh;
+ 
+  
+}
+.yellow{
+  background-color: #ffc83b;
+  width: 10%;
+  height: 15vh;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.green{
+  background-color: #8ac72a;
+  width: 10%;
+  height: 15vh;
+
+}
+.blue{
+  background-color: #2081c3;
+  width: 10%;
+  height: 15vh;
+
+}
+.purple{
+  background-color: #694d92;
+  width: 10%;
+  height: 15vh;
+
 }
