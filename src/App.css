@@ -2,16 +2,16 @@
 .App{
   display:flex;
   flex-direction:column;
-  text-align: center;
+  text-align:center;
   border: none;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .title{
-  font-size:3rem;
+  font-size:2.1rem;
 }
 
 .flex-fieldset , .justify-fieldset , .align-fieldset{
-  font-size:1.5rem;
+  font-size:1.3rem;
   border:none;
   
 
@@ -71,4 +71,12 @@
   width: 10%;
   height: 15vh;
 
+}
+.historyList {
+  list-style: none;
+  text-align: left;
+}
+.historyList li:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

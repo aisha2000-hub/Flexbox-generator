@@ -1,45 +1,66 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Box from "./components/Box";
 
-function App() {
-  const [flexDirection, setFlexDirection] = useState();
-  const [justifyContent, setJustifyContent] = useState();
-  const [alignItems, setAlignItems] = useState();
+  function App() {
+
+  const farben = ["red", "yellow", "green", "blue", "purple"];
+  const [flexDirection, setFlexDirection] = useState('row');
+  const [justifyContent, setJustifyContent] = useState('space-between');
+  const [alignItems, setAlignItems] = useState('center');
+  const [settingsHistory, setSettingsHistory] = useState([]);
+  
+   const selectHistory = (history) => {
+     setAlignItems(history.alignItems);
+     setFlexDirection(history.flexDirection);
+     setJustifyContent(history.justifyContent);
+   };
+  useEffect(() =>{
+    const setting = {
+      stepDate: Date.now(),
+      flexDirection: flexDirection,
+      justifyContent: justifyContent,
+      alignItems: alignItems
+    };
+     setSettingsHistory([...settingsHistory, setting]);
+     console.log(settingsHistory);
+     }, [flexDirection, justifyContent, alignItems]);
+  
 
   return (
     <div className="App">
-     {/* ÜBERSCHRIFT */}
+
+      {/* ÜBERSCHRIFT */}
       <h1 className="title">Flexbox Konfiguator</h1>
 
-
-     {/* FLEXDIRECTION */}
+      {/* FLEXDIRECTION */}
       <fieldset className="flex-fieldset">
         flex-direction
         <input
           type="radio"
           id="row"
-          name="flex-direction"
+          name="flexDirection"
           value="row"
-          onChange={() => {
-            setFlexDirection("row");
+          checked={flexDirection === "row"}
+          onChange={(e) => {
+            setFlexDirection(e.target.value);
           }}
         />
         <label htmlFor="row">row</label>
         <input
           type="radio"
           id="column"
-          name="flex-direction"
+          name="flexDirection"
           value="column"
-          onChange={() => {
-            setFlexDirection("column");
+          checked={flexDirection === "column"}
+          onChange={(e) => {
+            setFlexDirection(e.target.value);
           }}
         />
         <label htmlFor="column">column</label>
       </fieldset>
 
-
-     {/* JUSTIFYCONTENT */}
+      {/* JUSTIFYCONTENT */}
       <fieldset className="justify-fieldset">
         justify-content
         <select
@@ -56,7 +77,6 @@ function App() {
           <option value="space-around">space-around</option>
         </select>
       </fieldset>
-
 
       {/* ALIGNITEM */}
       <fieldset className="align-fieldset">
@@ -75,8 +95,7 @@ function App() {
         </select>
       </fieldset>
 
-
-    {/* FARBCONTAINER */}
+      {/* FARBCONTAINER */}
       <div
         className="farb-container"
         style={{
@@ -85,12 +104,33 @@ function App() {
           alignItems: alignItems,
         }}
       >
-        <Box farbe="red"></Box>
-        <Box farbe="yellow"></Box>
-        <Box farbe="green"></Box>
-        <Box farbe="blue"></Box>
-        <Box farbe="purple"></Box>
+        {farben.map((farbe) => {
+          return <Box farbe={farbe} />;
+        // })}
       </div>
+      <h3>History</h3>
+      <ul className="historyList">
+        {/* Iteration über das settingsHistory-Array, um die Einträge anzuzeigen */}
+        {settingsHistory.map((historyentry) => {
+          const tmpDate = new Date(historyentry.stepDate);
+          return (
+            <li
+              key={historyentry.stepDate}
+              onClick={() => selectHistory(historyentry)}
+            >
+              <span style={{ marginRight: 4, fontWeight: "bold" }}>
+                {/* Formatierung des Date-Objekts */}
+                {tmpDate.toLocaleString("de-DE", {
+                  dateStyle: "short",
+                  timeStyle: "medium"
+                })}
+              </span>
+              {historyentry.flexDirection},{historyentry.alignItems},{" "}
+              {historyentry.justifyContent}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
